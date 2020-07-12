@@ -10,6 +10,10 @@ use Illuminate\Http\Request;
 
 class StudentController extends Controller
 {
+    public function __construct()
+    {
+        $this->authorizeResource(Student::class,'faculty');
+    }
     /**
      * Display a listing of the resource.
      *
