@@ -18,6 +18,7 @@ Route::get('/', function () {
 });
 Route::resource('users', 'UserController');
 Route::resource('faculties', 'FacultyController');
+Route::resource('modules.subModules', 'SubModuleController');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
