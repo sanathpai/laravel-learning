@@ -1,8 +1,10 @@
 @extends('layouts.app')
 @section('content')
-<h1>Hi</h1>
 
-@endsection
-@section('script')
-<h1>Bye</h1>
+@php
+$users = App\Student::all();
+@endphp
+@foreach($users as $user)
+<p>User {{$loop->index}}: {{$user->name}}</p>
+@endforeach
 @endsection

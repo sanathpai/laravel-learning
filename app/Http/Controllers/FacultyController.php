@@ -17,7 +17,7 @@ class FacultyController extends Controller
      */
     public function index()
     {
-        return view('faculty.index', ['faculties' => Faculty::all()]);
+        return view('faculty.index', ['faculties'=>Faculty::all()]);
     }
 
     /**
@@ -27,7 +27,7 @@ class FacultyController extends Controller
      */
     public function create()
     {
-        //
+        return view('faculty.create');
     }
 
     /**
@@ -40,13 +40,13 @@ class FacultyController extends Controller
     {
         $data = $request->validate([
             'name' => 'string|required',
-            'email' => 'email|required',
-            'password' => 'string|required|min:5',
+            'email' => 'email|required|unique:users,email',
+            'password' => 'string|required|min:5|confirmed',
             'employee_code' => 'string|required',
             'designation' => 'string|required',
         ]);
         $data['password'] = Hash::make($data['password']);
-        DB::transaction(function () {
+        DB::transaction(function () use($data) {
             $faculty = new Faculty();
             $faculty->fill($data);
             $faculty->save();
@@ -54,7 +54,7 @@ class FacultyController extends Controller
             $user->fill($data);
             $user->details()->associate($faculty)->save();
         }, 5);
-        return ['message' => 'success'];
+        return redirect(route('faculties.index'))->with(['message' => 'success']);
     }
 
     /**
@@ -65,7 +65,7 @@ class FacultyController extends Controller
      */
     public function show(Faculty $faculty)
     {
-        return $faculty;
+        return view('faculty.show',['faculty' => $faculty]);
     }
 
     /**
@@ -76,6 +76,7 @@ class FacultyController extends Controller
      */
     public function edit(Faculty $faculty)
     {
+        return view('faculty.edit',['faculty' => $faculty]);
     }
 
     /**
@@ -92,14 +93,14 @@ class FacultyController extends Controller
             'employee_code' => 'string|required|unique:faculties,employee_code,' . $faculty->id . ',id',
             'designation' => 'string|required',
         ]);
-        DB::transaction(function () {
+        DB::transaction(function () use($faculty, $data){
             $faculty->fill($data);
             $user = $faculty->user;
             $user->fill($data);
             $user->save();
             $faculty->save();
         }, 5);
-        return $faculty;
+        return redirect(route('faculties.index'))->with(['message' => 'success']);
     }
 
     /**
@@ -110,9 +111,10 @@ class FacultyController extends Controller
      */
     public function destroy(Faculty $faculty)
     {
-        DB::transaction(function () {
+        DB::transaction(function () use($faculty) {
             $faculty->user->delete();
             $faculty->delete();
         });
+        return redirect(route('faculties.index'))->with(['message' => 'success']);
     }
 }

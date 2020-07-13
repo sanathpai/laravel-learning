@@ -18,8 +18,7 @@ class StudentPolicy
      */
     public function viewAny(User $user)
     {
-        //
-        return $user->details_type=="App\Faculty";
+        return $user->details_type == "App\Faculty";
     }
 
     /**
@@ -31,8 +30,7 @@ class StudentPolicy
      */
     public function view(User $user, Student $student)
     {
-        //
-        return $user->details_type=="App\Faculty"||$user->details->id==$student->id;
+        return $user->details_type == "App\Faculty" || $user->details->id == $student->id;
     }
 
     /**
@@ -43,7 +41,7 @@ class StudentPolicy
      */
     public function create(User $user)
     {
-        //
+        return $user->details_type == "App\Faculty";
     }
 
     /**
@@ -55,8 +53,7 @@ class StudentPolicy
      */
     public function update(User $user, Student $student)
     {
-        //
-        return $user->details_type=="App\Faculty"||$user->details->id==$student->id;
+        return $user->details_type == "App\Faculty" || $user->details->id == $student->id;
     }
 
     /**
@@ -68,8 +65,7 @@ class StudentPolicy
      */
     public function delete(User $user, Student $student)
     {
-        //
-        return $user->details_type=="App\Faculty";
+        return $user->details_type == "App\Faculty";
     }
 
     /**
@@ -81,7 +77,6 @@ class StudentPolicy
      */
     public function restore(User $user, Student $student)
     {
-        //
         return false;
     }
 
@@ -94,7 +89,6 @@ class StudentPolicy
      */
     public function forceDelete(User $user, Student $student)
     {
-        //
         return false;
     }
 }

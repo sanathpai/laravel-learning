@@ -7,7 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class SubModule extends Model
 {
     protected $fillable = ['name', 'module_id'];
-    public function content()
+    public function content() //content_id, content_type
+
     {
         return $this->morphTo();
     }

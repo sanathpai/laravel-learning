@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\User;
-use Illuminate\Http\Request;
 use Hash;
+use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
@@ -25,7 +25,6 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
         return abort(404);
     }
 
@@ -58,8 +57,7 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        //
-        return abort(404);
+        return $user;
     }
 
     /**
@@ -70,7 +68,6 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        //
         return abort(404);
     }
 
@@ -85,7 +82,7 @@ class UserController extends Controller
     {
         $data = $request->validate([
             'name' => 'string|required',
-            'email' => 'email|required'
+            'email' => 'email|required',
         ]);
         $user->fill($data);
         $user->save();
@@ -100,7 +97,6 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
-        //
         return $user->delete();
     }
 }

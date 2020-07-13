@@ -5,47 +5,40 @@
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card">
-                <div class="card-header">{{ __('Students') }}</div>
+                <div class="card-header">{{ __('Modules') }}</div>
 
                 <div class="card-body">
-                    <a class="btn btn-primary float-right mb-2" href="{{route('students.create')}}">Create Student</a>
+                    <a class="btn btn-primary float-right mb-2" href="{{route('modules.create')}}">Create Module</a>
+
                     <table class="table">
                         <thead>
                             <tr>
-                                <th>
-                                    USN
-                                </th>
+
                                 <th>
                                     Name
                                 </th>
-                                <th>
-                                    Email
-                                </th>
+
                                 <th>
                                     Action
                                 </th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($students as $student)
+                            @foreach($modules as $module)
                             <tr>
+
                                 <td>
-                                    {{$student->usn}}
+                                    {{$module->name}}
                                 </td>
 
                                 <td>
-                                    {{$student->user->name}}
-                                </td>
-                                <td>
-                                    {{$student->user->email}}
-                                </td>
-                                <td>
-                                    <form action="{{route('students.destroy', ['student'=>$student->id])}}"
-                                        method="POST">
+                                    <form action="{{route('modules.destroy', ['module'=>$module->id])}}" method="POST">
                                         @csrf
                                         @method('delete')
                                         <a class="btn btn-primary mr-2"
-                                            href="{{route('students.edit', ['student'=>$student->id])}}">Update</a>
+                                            href="{{route('modules.show', ['module'=>$module->id])}}">View</a>
+                                        <a class="btn btn-primary mr-2"
+                                            href="{{route('modules.edit', ['module'=>$module->id])}}">Update</a>
                                         <button class="btn btn-danger mr-2" type="submit">Delete</button>
                                     </form>
                                 </td>

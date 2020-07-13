@@ -14,8 +14,7 @@ class ModuleController extends Controller
      */
     public function index()
     {
-        //
-        return view('module.index');
+        return view('module.index', ['modules'=> Module::all()]);
     }
 
     /**
@@ -25,7 +24,6 @@ class ModuleController extends Controller
      */
     public function create()
     {
-        //
         return view('module.create');
     }
 
@@ -37,11 +35,12 @@ class ModuleController extends Controller
      */
     public function store(Request $request)
     {
-        //
-        $data=$request->validate(['name'=>'string|required']);
+        $data = $request->validate([
+            'name'=> 'string|required'
+        ]);
+        $data["subject_id"] =0;
         Module::create($data);
-        return redirect(route('module.index'));
-
+        return redirect(route('modules.index'));
     }
 
     /**
@@ -52,7 +51,7 @@ class ModuleController extends Controller
      */
     public function show(Module $module)
     {
-        //
+        return redirect(route('modules.subModules.index', ['module'=> $module->id]));
     }
 
     /**

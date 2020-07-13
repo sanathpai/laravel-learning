@@ -41,6 +41,11 @@ class User extends Authenticatable
     }
     public function details()
     {
+        //details_id, details_type
         return $this->morphTo();
+    }
+    public function subjects()
+    {
+        return $this->belongsToMany('App\Subject');
     }
 }

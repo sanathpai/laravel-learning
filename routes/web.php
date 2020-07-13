@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Illuminate\Http\Request;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -11,15 +11,21 @@ use Illuminate\Http\Request;
 | routes are loaded by the RouteServiceProvider within a group which
 | contains the "web" middleware group. Now create something great!
 |
-*/
+ */
 
 Route::get('/', function () {
-    return view("welcome");
+    return view('welcome');
 });
-Route::resource('users', 'UserController');
-Route::resource('faculties', 'FacultyController');
-Route::resource('modules.subModules', 'SubModuleController');
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
 Route::view('/test', 'test');
+
+Route::resource('faculties', 'FacultyController');
+
+Route::resource('students', 'StudentController');
+
+Route::resource('modules.subModules', 'SubModuleController');
+Route::resource('modules', 'ModuleController');

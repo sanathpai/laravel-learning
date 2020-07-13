@@ -34,7 +34,7 @@ class SubModuleController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Module $module,Request $request)
+    public function store(Request $request, Module $module)
     {
         //
     }
@@ -45,7 +45,7 @@ class SubModuleController extends Controller
      * @param  \App\SubModule  $subModule
      * @return \Illuminate\Http\Response
      */
-    public function show(Module $module,SubModule $subModule)
+    public function show(Module $module, SubModule $subModule)
     {
         //
     }
@@ -56,7 +56,7 @@ class SubModuleController extends Controller
      * @param  \App\SubModule  $subModule
      * @return \Illuminate\Http\Response
      */
-    public function edit(Module $module,SubModule $subModule)
+    public function edit(Module $module, SubModule $subModule)
     {
         //
     }
@@ -68,7 +68,7 @@ class SubModuleController extends Controller
      * @param  \App\SubModule  $subModule
      * @return \Illuminate\Http\Response
      */
-    public function update(Module $module,Request $request, SubModule $subModule)
+    public function update(Request $request, Module $module, SubModule $subModule)
     {
         //
     }
@@ -79,7 +79,7 @@ class SubModuleController extends Controller
      * @param  \App\SubModule  $subModule
      * @return \Illuminate\Http\Response
      */
-    public function destroy(SubModule $subModule)
+    public function destroy(Module $module, SubModule $subModule)
     {
         //
     }

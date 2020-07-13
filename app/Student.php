@@ -13,10 +13,7 @@ class Student extends Model
     public $incrementing = true;
     public $timestamps = true;
     protected $fillable = ['name', 'usn'];
-    public function subjects()
-    {
-        return $this->belongsToMany('App\Subject');
-    }
+
     public function user()
     {
         return $this->morphOne('App\User', 'details');
